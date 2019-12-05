@@ -8,7 +8,15 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx live-server --port=8000"
+    "start": "npx live-server --port=8000",
+    "angular:start": "npm run angular:docker:up",
+    "angular:build": "npm run angular:docker:build",
+    "angular:stop": "npm run angular:docker:down",
+    "angular:docker:up": "docker-compose -f docker-compose.using-d3-with-angular.yml up",
+    "angular:docker:build": "docker-compose -f docker-compose.using-d3-with-angular.yml up --remove-orphans --build --force-recreate",
+    "angular:docker:down": "docker-compose -f docker-compose.using-d3-with-angular.yml down",
+    "docker:nuke": "npm run docker:nuke:containers && docker rmi -f $(docker images -q)",
+    "docker:nuke:containers": "docker rm $(docker ps -aq)"
   },
   "repository": {
     "type": "git",
