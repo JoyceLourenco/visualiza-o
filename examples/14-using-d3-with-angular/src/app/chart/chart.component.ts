@@ -7,4 +7,6 @@ import { DimensionsType } from './../utils/types';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent {
+  // We want to pass our chart a dimensions object so it can shift our chart bounds
+  @Input() dimensions: DimensionsType
 }
