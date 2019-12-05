@@ -56,4 +56,12 @@ export class TimelineComponent {
       ),
     };
   }
+
+  // Update dimensions based on the width of our container div
+  updateDimensions() {
+    const width = this.container.nativeElement.offsetWidth
+    this.dimensions.width = width
+    this.dimensions.boundedWidth = Math.max(this.dimensions.width - this.dimensions.marginLeft - this.dimensions.marginRight, 0)
+    console.log(this.dimensions)
+  }
 }
