@@ -7,17 +7,17 @@
     {
       "type": "chrome",
       "request": "launch",
-      "name": "Angular example [LOCAL]",
+      "name": "Using D3 with Angular [LOCAL]",
       "url": "http://localhost:4200",
-      "webRoot": "${workspaceFolder}/examples/using-d3-with-angular"
+      "webRoot": "${workspaceFolder}/examples/14-using-d3-with-angular"
     },
     {
       "type": "chrome",
       "request": "launch",
-      "name": "Angular example [KARMA]",
+      "name": "Using D3 with Angular [KARMA]",
       "url": "http://localhost:9876/debug.html", // Docker container
       // "url": "http://localhost:9877/debug.html",    // Local development machine
-      "webRoot": "${workspaceFolder}/examples/using-d3-with-angular",
+      "webRoot": "${workspaceFolder}/examples/14-using-d3-with-angular",
       "breakOnLoad": true,
       "sourceMaps": true,
       "sourceMapPathOverrides": {
