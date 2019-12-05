@@ -4,6 +4,7 @@ import {
   ViewChild,
   ElementRef,
   AfterContentInit,
+  HostListener,
   AfterViewInit,
   OnChanges,
   SimpleChanges,
@@ -60,6 +61,11 @@ export class TimelineComponent implements AfterContentInit {
 
   // Execute this after the component is first rendered
   ngAfterContentInit() {
+    this.updateDimensions();
+  }
+
+  // Use HostListener to update our dimensions every time the window is resized
+  @HostListener("window:resize") windowResize() {
     this.updateDimensions();
   }
 
