@@ -3,6 +3,7 @@ import {
   Input,
   ViewChild,
   ElementRef,
+  AfterContentInit,
   AfterViewInit,
   OnChanges,
   SimpleChanges,
@@ -16,7 +17,7 @@ import { DimensionsType, ScaleType, AccessorType } from "../utils/types";
   templateUrl: "./timeline.component.html",
   styleUrls: ["./timeline.component.css"],
 })
-export class TimelineComponent {
+export class TimelineComponent implements AfterContentInit {
   // Note that our properties are flexible enough so we could use any dataset with our timeline component
   @Input() data: object[];
   @Input() label: string;
@@ -57,11 +58,21 @@ export class TimelineComponent {
     };
   }
 
+  // Execute this after the component is first rendered
+  ngAfterContentInit() {
+    this.updateDimensions();
+  }
+
   // Update dimensions based on the width of our container div
   updateDimensions() {
-    const width = this.container.nativeElement.offsetWidth
-    this.dimensions.width = width
-    this.dimensions.boundedWidth = Math.max(this.dimensions.width - this.dimensions.marginLeft - this.dimensions.marginRight, 0)
-    console.log(this.dimensions)
+    const width = this.container.nativeElement.offsetWidth;
+    this.dimensions.width = width;
+    this.dimensions.boundedWidth = Math.max(
+      this.dimensions.width -
+        this.dimensions.marginLeft -
+        this.dimensions.marginRight,
+      0
+    );
+    console.log(this.dimensions);
   }
 }
