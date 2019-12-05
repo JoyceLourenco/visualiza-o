@@ -9,6 +9,7 @@ import { DimensionsType, ScaleType, AccessorType } from '../utils/types';
   styleUrls: ['./timeline.component.css'],
 })
 export class TimelineComponent {
+  // Note that our properties are flexible enough so we could use any dataset with our timeline component
   @Input() data: object[]
   @Input() label: string
   @Input() xAccessor: AccessorType
