@@ -27,6 +27,13 @@ export class TimelineComponent implements AfterContentInit {
 
   public dimensions: DimensionsType;
 
+  // Create scales to convert from the data domain to the pixel domain
+  public xScale: ScaleType;
+  public yScale: ScaleType;
+  public xAccessorScaled: AccessorType;
+  public yAccessorScaled: AccessorType;
+  public y0AccessorScaled: AccessorType;
+
   // Use ViewChild to hook onto an element in our template
   // NOTE: Starting with Angular 8, we need to add the second parameter to ViewChild. This will ensure our container is ready by the time we want to use it.
   @ViewChild("container", { static: true }) container: ElementRef;
