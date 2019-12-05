@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  using-d3-with-angular:
+    build:
+      context: ./examples/using-d3-with-angular
+      dockerfile: ./Dockerfile
+    container_name: 'using-d3-with-angular'
+    command: bash -c "ng serve --host 0.0.0.0 --port 4200"
+    ports:
+      - "4200:4200"
+      - "9876:9876"
+    # Automatically hot reload code changes in the Docker container
+    volumes:
+      - ./examples/using-d3-with-angular:/app
+      - ./examples/using-d3-with-angular/src:/app/src
