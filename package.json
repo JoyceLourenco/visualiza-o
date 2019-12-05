@@ -8,7 +8,14 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx live-server --port=8000"
+    "start": "npx live-server --port=8000",
+    "angular:start": "npm run docker:up",
+    "angular:build": "npm run docker:build",
+    "docker:up": "docker-compose up",
+    "docker:build": "docker-compose up --remove-orphans --build --force-recreate",
+    "docker:down": "docker-compose down",
+    "docker:nuke": "npm run docker:nuke:containers && docker rmi -f $(docker images -q)",
+    "docker:nuke:containers": "docker rm $(docker ps -aq)"
   },
   "repository": {
     "type": "git",
