@@ -88,4 +88,23 @@ export class TimelineComponent implements AfterContentInit {
     );
     console.log(this.dimensions);
   }
+
+  // Update scales and scaled accessor functions that we can pass to chart components
+  updateScales() {
+    // Create the appropriate scales for our timeline
+    this.xScale = d3
+      .scaleTime()
+      .domain(d3.extent(this.data, this.xAccessor))
+      .range([0, this.dimensions.boundedWidth]);
+    this.yScale = d3
+      .scaleLinear()
+      .domain(d3.extent(this.data, this.yAccessor))
+      .range([this.dimensions.boundedHeight, 0])
+      .nice();
+
+    // Create scaled accessor functions so that our chart components do not need to be aware of our scales
+    this.xAccessorScaled = d => this.xScale(this.xAccessor(d));
+    this.yAccessorScaled = d => this.yScale(this.yAccessor(d));
+    this.y0AccessorScaled = d => this.yScale(this.yScale.domain()[0]);
+  }
 }
