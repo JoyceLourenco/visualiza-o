@@ -18,7 +18,7 @@ import { DimensionsType, ScaleType, AccessorType } from "../utils/types";
   templateUrl: "./timeline.component.html",
   styleUrls: ["./timeline.component.css"],
 })
-export class TimelineComponent implements AfterContentInit {
+export class TimelineComponent implements AfterContentInit, OnChanges {
   // Note that our properties are flexible enough so we could use any dataset with our timeline component
   @Input() data: object[];
   @Input() label: string;
@@ -71,6 +71,11 @@ export class TimelineComponent implements AfterContentInit {
     this.updateDimensions();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    // Update our scales whenever data changes
+    this.updateScales();
+  }
+
   // Use HostListener to update our dimensions every time the window is resized
   @HostListener("window:resize") windowResize() {
     this.updateDimensions();
@@ -86,7 +91,9 @@ export class TimelineComponent implements AfterContentInit {
         this.dimensions.marginRight,
       0
     );
-    console.log(this.dimensions);
+
+    // Update our scales whenever the dimensions change
+    this.updateScales();
   }
 
   // Update scales and scaled accessor functions that we can pass to chart components
