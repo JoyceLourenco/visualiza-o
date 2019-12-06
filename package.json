@@ -8,7 +8,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx live-server --port=8000",
+    "start": "npm run angular:start",
+    "build": "npm run angular:build",
+    "stop": "npm run angular:stop",
+    "start:server": "npx live-server --port=8000",
     "angular:start": "npm run angular:docker:up",
     "angular:build": "npm run angular:docker:build",
     "angular:stop": "npm run angular:docker:down",
