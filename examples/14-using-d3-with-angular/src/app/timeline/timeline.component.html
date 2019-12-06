@@ -1,3 +1,14 @@
 <div #container>
-  <app-chart [dimensions]="dimensions"></app-chart>
+  <app-chart [dimensions]="dimensions">
+    <!--
+      For all of our chart components, we’ll initialize them as attributes of a <g> element.
+      This will keep our chart library’s API as simple as possible.
+    -->
+    <svg:g
+      appLine
+      [data]="data"
+      [xAccessor]="xAccessorScaled"
+      [yAccessor]="yAccessorScaled"
+    ></svg:g>
+  </app-chart>
 </div>
