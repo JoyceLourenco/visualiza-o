@@ -1,5 +1,9 @@
-<svg:g #axis> </svg:g>
-
+<!-- X axis will display
+  1. a <line> to show the bounds of our axis,
+  2. one <text> element for each item in our ticks array, and
+  3. a <text> label, if we have a label property, positioned just below our axis,
+  centered horizontally.
+-->
 <svg:g
   *ngIf="dimension == 'x'"
   class="x"
@@ -21,6 +25,11 @@
   </svg:text>
 </svg:g>
 
+<!-- Y axis will display
+  1. a <line> to show the bounds of our axis,
+  2. one <text> element for each item in our ticks array, and
+  3. a <text> label, if we have a label property, rotated 90 degrees counter-clockwise
+-->
 <svg:g
   class="y"
   *ngIf="dimension == 'y'">
