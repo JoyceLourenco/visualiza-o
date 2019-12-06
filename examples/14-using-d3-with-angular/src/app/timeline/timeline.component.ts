@@ -34,6 +34,9 @@ export class TimelineComponent implements AfterContentInit, OnChanges {
   public yAccessorScaled: AccessorType;
   public y0AccessorScaled: AccessorType;
 
+  // Format our date object into a prettier, human-readable value (Oct 1, Nov 1)
+  public formatDate: (date: object) => string = d3.timeFormat("%-b %-d");
+
   // Use ViewChild to hook onto an element in our template
   // NOTE: Starting with Angular 8, we need to add the second parameter to ViewChild. This will ensure our container is ready by the time we want to use it.
   @ViewChild("container", { static: true }) container: ElementRef;
