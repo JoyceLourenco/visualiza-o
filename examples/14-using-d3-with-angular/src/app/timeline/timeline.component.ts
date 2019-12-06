@@ -91,11 +91,13 @@ export class TimelineComponent implements AfterContentInit {
 
   // Update scales and scaled accessor functions that we can pass to chart components
   updateScales() {
-    // Create the appropriate scales for our timeline
+    // Scale for x-axis
     this.xScale = d3
       .scaleTime()
       .domain(d3.extent(this.data, this.xAccessor))
       .range([0, this.dimensions.boundedWidth]);
+
+    // Scale for y-axis
     this.yScale = d3
       .scaleLinear()
       .domain(d3.extent(this.data, this.yAccessor))
