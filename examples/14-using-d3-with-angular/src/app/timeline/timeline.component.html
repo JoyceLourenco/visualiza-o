@@ -8,6 +8,15 @@
     <!-- Remember that SVG elements’ z-indices are determined by their order in the DOM. If you want your line to overlap your axes, make sure to add the appAxis component before the appLine component. -->
     <svg:g
       appAxis
+      dimension="x"
+      [dimensions]="dimensions"
+      [scale]="xScale"
+      [label]="label"
+      [formatTick]="formatDate"
+    ></svg:g>
+
+    <svg:g
+      appAxis
       dimension="y"
       [dimensions]="dimensions"
       [scale]="yScale"
