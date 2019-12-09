@@ -277,7 +277,14 @@ This is a killer example. Check out how data is dynamically created and animated
 
 This example requires you have [Docker Desktop](https://www.docker.com/products/docker-desktop) installed and configured on your development machine - as well as the [Angular CLI](https://cli.angular.io).
 
-To run the Angular example, make sure you're at the top level directory of this project and run:
+To run the Angular example, make sure you're at the top level directory of this project. You will want to modify the following scripts in `package.json` so they refer to the appropriate `docker-compose.using-d3-with-angular.yml` Docker compose file:
+
+```sh
+# package.json
+"angular:docker:up": "docker-compose -f docker-compose.using-d3-with-angular.yml up",
+"angular:docker:build": "docker-compose -f docker-compose.using-d3-with-angular.yml up --remove-orphans --build --force-recreate",
+"angular:docker:down": "docker-compose -f docker-compose.using-d3-with-angular.yml down",
+```
 
 ```sh
 $ npm run angular:start
@@ -286,3 +293,22 @@ $ npm run angular:start
 You should be able to view the app at [http://localhost:4200](http://localhost:4200) - similar to Example 13 above:
 
 ![screenshots/example-13.gif](screenshots/example-13.gif)
+
+## Example 15: Angular D3 responsive graph
+
+This example requires you have [Docker Desktop](https://www.docker.com/products/docker-desktop) installed and configured on your development machine - as well as the [Angular CLI](https://cli.angular.io).
+
+To run the Angular example, make sure you're at the top level directory of this project. You will want to modify the following scripts in `package.json` so they refer to the appropriate `docker-compose.angular-d3-responsive-graph.yml` Docker compose file:
+
+```sh
+# package.json
+"angular:docker:up": "docker-compose -f docker-compose.angular-d3-responsive-graph.yml up",
+"angular:docker:build": "docker-compose -f docker-compose.angular-d3-responsive-graph.yml up --remove-orphans --build --force-recreate",
+"angular:docker:down": "docker-compose -f docker-compose.angular-d3-responsive-graph.yml down",
+```
+
+```sh
+$ npm run angular:start
+```
+
+You should be able to view the app at [http://localhost:4200](http://localhost:4200)
