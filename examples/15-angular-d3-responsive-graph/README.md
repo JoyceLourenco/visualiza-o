@@ -24,8 +24,8 @@ $ ng generate component bar-chart
 # Modify src/app/app.component.html to display our bar chart component
 # Create src/assets/data.json - based on data from https://gist.github.com/jplemieux66/54455956beb5f01b2aed39c11036b124
 # Create an interface for the data points - src/app/data/data.model.ts
-# Modify src/app/app.component.ts to load our data
 # Add the HTTP client module to src/app/app.module.ts
+# Modify src/app/app.component.ts to load our data using the HttpClient
 # Pass the data to our chart component by modifying src/app/app.component.html
 # Begin integrating the bar chart component in src/app/bar-char/bar-chart.component.html
 # Modify src/app/bar-chart/bar-chart.component.ts
