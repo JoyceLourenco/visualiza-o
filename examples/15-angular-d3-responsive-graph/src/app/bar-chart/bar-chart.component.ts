@@ -49,6 +49,7 @@ export class BarChartComponent implements OnChanges {
     // Draw our SVG chart using the container element's width and height
     const svg = d3
       .select(element)
+      // Append a new SVG element to our container using the same width and height
       .append('svg')
       .attr('width', element.offsetWidth)
       .attr('height', element.offsetHeight);
@@ -62,16 +63,42 @@ export class BarChartComponent implements OnChanges {
       element.offsetHeight - this.margin.top - this.margin.bottom;
 
     const x = d3
+      /**
+       * When creating bar charts scaleBand helps to determine the geometry of the bars, taking into account padding between each bar.
+       * The domain is specified as an array of values (one value for each band) and the range as the minimum and maximum extents of
+       * the bands (e.g. the total width of the bar chart).
+       *
+       * In effect scaleBand will split the range into n bands (where n is the number of values in the domain array) and compute
+       * the positions and widths of the bands taking into account any specified padding.
+       *
+       * Source: https://www.d3indepth.com/scales/
+       */
       .scaleBand()
+      /**
+       * v4’s .rangeRound() and .padding() replaced v3’s rangeRoundBands()
+       * https://medium.com/@nick3499/d3-scaleband-rangeround-padding-ordinal-scale-with-range-bands-including-padding-f4af1e3c96ab
+       */
       .rangeRound([0, contentWidth])
       .padding(0.1)
+      // Domain refers to the complete set of values - we want to display each letter on the x axis
       .domain(data.map(d => d.letter));
 
     const y = d3
+      /**
+       * Constructs a new continuous scale with the specified domain and range, the default interpolator and clamping disabled.
+       * If either domain or range are not specified, each defaults to [0, 1]. Linear scales are a good default choice for continuous
+       * quantitative data because they preserve proportional differences. Each range value y can be expressed as a function of
+       * the domain value x: y = mx + b.
+       *
+       * Source: https://github.com/d3/d3-scale/blob/master/README.md#scaleLinear
+       */
       .scaleLinear()
+      // Since we do not to represent fractional numbers, we will use rangeRound() to ensure we have whole numbers for our y axis
       .rangeRound([contentHeight, 0])
+      // Domain refers to the complete set of values - our y axis will display up to the largest value we have
       .domain([0, d3.max(data, d => d.frequency)]);
 
+    // Think of "g" as the "div" equivalent when creating SVG images
     const g = svg
       .append('g')
       .attr(
@@ -82,26 +109,36 @@ export class BarChartComponent implements OnChanges {
     g.append('g')
       .attr('class', 'axis axis--x')
       .attr('transform', 'translate(0,' + contentHeight + ')')
+      /**
+       * Constructs a new bottom-oriented axis generator for the given scale, with empty tick arguments, a
+       * tick size of 6 and padding of 3. In this orientation, ticks are drawn below the horizontal domain path.
+       *
+       * Source: https://github.com/d3/d3-axis#axisBottom
+       */
       .call(d3.axisBottom(x));
 
     g.append('g')
       .attr('class', 'axis axis--y')
-      .call(d3.axisLeft(y).ticks(10, '%'))
-      .append('text')
-      .attr('transform', 'rotate(-90)')
-      .attr('y', 6)
-      .attr('dy', '0.71em')
-      .attr('text-anchor', 'end')
-      .text('Frequency');
+      /**
+       * Constructs a new left-oriented axis generator for the given scale, with empty tick arguments, a
+       * tick size of 6 and padding of 3. In this orientation, ticks are drawn to the left of the vertical domain path.
+       */
+      .call(d3.axisLeft(y)
+      // We want D3 to intelligently generate 10 ticks for our range if possible; adding a % symbol after the value is displayed
+      .ticks(10, '%'));
 
+    // Select all of the bars
     g.selectAll('.bar')
+      // Bind our data to this selection
       .data(data)
+      // .enter identifies any DOM elements that need to be added
       .enter()
-      .append('rect')
-      .attr('class', 'bar')
-      .attr('x', d => x(d.letter))
-      .attr('y', d => y(d.frequency))
-      .attr('width', x.bandwidth())
-      .attr('height', d => contentHeight - y(d.frequency));
+        // Create an SVG rect for any new elements with appropriate values
+        .append('rect')
+        .attr('class', 'bar')
+        .attr('x', d => x(d.letter))
+        .attr('y', d => y(d.frequency))
+        .attr('width', x.bandwidth())   // bandwidth() will determine how wide each band of our bar chart should be
+        .attr('height', d => contentHeight - y(d.frequency));
   }
 }

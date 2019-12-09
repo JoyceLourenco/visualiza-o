@@ -15,5 +15,6 @@
 }
 
 .axis--x path {
+  /* Set to display: none; if you don't want the x axis to appear */
   display: none;
 }
