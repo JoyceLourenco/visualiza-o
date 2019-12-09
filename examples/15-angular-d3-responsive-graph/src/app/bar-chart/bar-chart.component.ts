@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   Input,
   ElementRef,
   OnChanges,
@@ -12,6 +11,7 @@ import { DataModel } from './../data/data.model';
 
 @Component({
   selector: 'app-bar-chart',
+  // Dynamic modifications to the DOM by D3 do not play well with default Angular styling; set ViewEncapsulation.None
   encapsulation: ViewEncapsulation.None,
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.css']
@@ -36,17 +36,24 @@ export class BarChartComponent implements OnChanges {
   private createChart(): void {
     d3.select('svg').remove();
 
+    // Use our HTML container element to determine the width and height of our D3 generated chart
     const element = this.chartContainer.nativeElement;
+
+    // Use the data supplied via our Input property
     const data = this.data;
 
-    // Use our HTML container element to determine the width and height of our D3 generated chart
+    // Draw our SVG chart using the container element's width and height
     const svg = d3
       .select(element)
       .append('svg')
       .attr('width', element.offsetWidth)
       .attr('height', element.offsetHeight);
+
+    // Calculate our content width based on our container element and left and right margins
     const contentWidth =
       element.offsetWidth - this.margin.left - this.margin.right;
+
+    // Calculate our content height based on our container element and top and bottom margins
     const contentHeight =
       element.offsetHeight - this.margin.top - this.margin.bottom;
 
