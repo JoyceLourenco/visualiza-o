@@ -1,12 +1,19 @@
 /* Original example used SCSS; this component was generated using CSS as the default styling */
-.bar {
+
+/* Use the height and width of the chart container */
+#chart {
+  width: inherit;
+  height: inherit;
+}
+
+#chart.bar {
   fill: steelblue;
 }
 
-.bar:hover {
+#chart.bar:hover {
   fill: brown;
 }
 
-.axis--x path {
+#chart.axis--x path {
   display: none;
 }
