@@ -6,14 +6,14 @@
   height: inherit;
 }
 
-#chart.bar {
+.bar {
   fill: steelblue;
 }
 
-#chart.bar:hover {
+.bar:hover {
   fill: brown;
 }
 
-#chart.axis--x path {
+.axis--x path {
   display: none;
 }
