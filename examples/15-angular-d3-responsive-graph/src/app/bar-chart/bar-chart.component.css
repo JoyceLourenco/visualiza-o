@@ -1,0 +1,12 @@
+/* Original example used SCSS; this component was generated using CSS as the default styling */
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis--x path {
+  display: none;
+}
