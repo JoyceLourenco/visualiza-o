@@ -2,3 +2,4 @@ node_modules
 fullstack-d3-advanced-code/14-using-d3-with-angular/node_modules
 .angulardoc.json
 examples/.DS_Store
+screenshots/.DS_Store
