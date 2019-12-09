@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
 
+![../../screenshots/example-15.gif](../../screenshots/example-15.gif)
+
 ## Recreating the example
 
 After generating an Angular app using the [Angular CLI](https://github.com/angular/angular-cli), this demo was inspired by [Creating a responsive graph with Angular and D3](https://medium.com/@jeanphilippelemieux/creating-a-responsive-graph-with-angular-and-d3-b45bb8065588)

@@ -312,3 +312,5 @@ $ npm run angular:start
 ```
 
 You should be able to view the app at [http://localhost:4200](http://localhost:4200)
+
+![screenshots/example-15.gif](screenshots/example-15.gif)
