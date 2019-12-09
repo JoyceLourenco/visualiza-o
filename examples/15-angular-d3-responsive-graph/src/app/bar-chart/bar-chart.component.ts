@@ -77,7 +77,8 @@ export class BarChartComponent implements OnChanges {
 
     g.append('g')
       .attr('class', 'axis axis--x')
-      .attr('transform', 'translate(0,' + contentHeight + ')');
+      .attr('transform', 'translate(0,' + contentHeight + ')')
+      .call(d3.axisBottom(x));
 
     g.append('g')
       .attr('class', 'axis axis--y')
