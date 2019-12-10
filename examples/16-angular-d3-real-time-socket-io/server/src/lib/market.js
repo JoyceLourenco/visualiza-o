@@ -1,3 +1,7 @@
+const moment = require('moment');
+
+let counter = 0;
+
 const marketPositions = [
   {"date": "10-05-2012", "close": 68.55, "open": 74.55},
   {"date": "09-05-2012", "close": 74.55, "open": 69.55},
@@ -21,6 +25,29 @@ const marketPositions = [
   {"date": "21-04-2012", "close": 58.13, "open": 53.13}
 ];
 
+function updateMarket() {
+  const diff = Math.floor(Math.random() * 1000) / 100;
+  const lastDay = moment(marketPositions[0].date, 'DD-MM-YYYY').add(1, 'days');
+  let open;
+  let close;
+
+  if (counter % 2 === 0) {
+    open = marketPositions[0].open + diff;
+    close = marketPositions[0].close + diff;
+  } else {
+    open = Math.abs(marketPositions[0].open - diff);
+    close = Math.abs(marketPositions[0].close - diff);
+  }
+
+  marketPositions.unshift({
+    date: lastDay.format('DD-MM-YYYY'),
+    open,
+    close
+  });
+  counter++;
+}
+
 module.exports = {
   marketPositions,
+  updateMarket,
 };
