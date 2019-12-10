@@ -314,3 +314,22 @@ $ npm run angular:start
 You should be able to view the app at [http://localhost:4200](http://localhost:4200)
 
 ![screenshots/example-15.gif](screenshots/example-15.gif)
+
+## Example 16: Real-Time Charts using Angular, D3, and Socket.IO
+
+This example requires you have [Docker Desktop](https://www.docker.com/products/docker-desktop) installed and configured on your development machine.
+
+To run the Angular example, make sure you're at the top level directory of this project. You will want to modify the following scripts in `package.json` so they refer to the appropriate `docker-compose.angular-d3-real-time-socket-io.yml` Docker compose file:
+
+```sh
+# package.json
+"angular:docker:up": "docker-compose -f docker-compose.angular-d3-real-time-socket-io.yml up",
+"angular:docker:build": "docker-compose -f docker-compose.angular-d3-real-time-socket-io.yml up --remove-orphans --build --force-recreate",
+"angular:docker:down": "docker-compose -f docker-compose.angular-d3-real-time-socket-io.yml down",
+```
+
+```sh
+$ npm run angular:start
+```
+
+You should be able to view the app at [http://localhost:4200](http://localhost:4200)
