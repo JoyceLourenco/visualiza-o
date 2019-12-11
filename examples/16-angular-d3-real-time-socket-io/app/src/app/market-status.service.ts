@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject, from } from 'rxjs';
 import * as socketio from 'socket.io-client';
 
-import { MarketPrice } from './market-price';
+import { MarketPrice } from './types/market-price';
 
 @Injectable({
   providedIn: 'root'

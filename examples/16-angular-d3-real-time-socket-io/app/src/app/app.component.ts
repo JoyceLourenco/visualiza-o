@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { MarketStatusService } from './market-status.service';
-import { MarketPrice } from './market-price';
+import { MarketPrice } from './types/market-price';
 
 @Component({
   selector: 'app-root',
