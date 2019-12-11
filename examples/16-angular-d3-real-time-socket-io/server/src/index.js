@@ -16,11 +16,11 @@ app.get('/api/market', (req, res) => {
   res.send(market.marketPositions);
 });
 
-// Hardcoded example - Have the server invoke the updateMarket method every five seconds to add more data points
+// Hardcoded example - Have the server invoke the updateMarket method periodically to add more data points
 setInterval(function () {
   market.updateMarket();
   io.sockets.emit('market', market.marketPositions[0]);
-}, 5000);
+}, 1000);
 
 // Socket.IO events
 io.on('connection', function (socket) {
