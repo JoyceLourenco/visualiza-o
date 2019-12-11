@@ -31,7 +31,9 @@ export class MarketChartComponent implements OnChanges {
   constructor() {}
 
   ngOnChanges() {
-    if (this.marketStatus) {
+    if (this.marketStatus && this.chartProps) {
+      this.updateChart();
+    } else if (this.marketStatus) {
       this.buildChart();
     }
   }
@@ -60,7 +62,7 @@ export class MarketChartComponent implements OnChanges {
 
     // Define the axes
     const xAxis = d3.axisBottom(this.chartProps.x);
-    const yAxis = d3.axisLeft(this.chartProps.y).ticks(5);
+    const yAxis = d3.axisLeft(this.chartProps.y).ticks(7);
 
     // Define the close market price line
     const valueLine = d3
@@ -71,7 +73,6 @@ export class MarketChartComponent implements OnChanges {
         }
       })
       .y(d => {
-        console.log('Close market');
         return this.chartProps.y(d.close);
       });
 
@@ -84,7 +85,6 @@ export class MarketChartComponent implements OnChanges {
         }
       })
       .y(d => {
-        console.log('Open market');
         return this.chartProps.y(d.open);
       });
 
@@ -101,27 +101,49 @@ export class MarketChartComponent implements OnChanges {
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
     // Scale the range of our data
-    this.chartProps.x.domain(d3.extent(this.marketStatus, d => {
-      if (d.date instanceof Date) {
-        return (d.date as Date).getTime();
-      }
-    }));
+    this.chartProps.x.domain(
+      d3.extent(this.marketStatus, d => {
+        if (d.date instanceof Date) {
+          return (d.date as Date).getTime();
+        }
+      })
+    );
     // Note that we are starting at 0 for the y domain and then using the largest value to represent (the largest open or close value)
-    this.chartProps.y.domain([0, d3.max(this.marketStatus, d => {
-      return Math.max(d.close, d.open);
-    })]);
+    this.chartProps.y.domain([
+      0,
+      d3.max(this.marketStatus, d => {
+        return Math.max(d.close, d.open);
+      })
+    ]);
 
     // Add the valueLine2 path
-    svg.append('path').attr('class', 'line line2').style('stroke', 'green').style('fill', 'none').attr('d', valueLine2(this.marketStatus));
+    svg
+      .append('path')
+      .attr('class', 'line line2')
+      .style('stroke', 'green')
+      .style('fill', 'none')
+      .attr('d', valueLine2(this.marketStatus));
 
     // Add the valueLine path
-    svg.append('path').attr('class', 'line line1').style('stroke', 'black').style('fill', 'none').attr('d', valueLine(this.marketStatus));
+    svg
+      .append('path')
+      .attr('class', 'line line1')
+      .style('stroke', 'black')
+      .style('fill', 'none')
+      .attr('d', valueLine(this.marketStatus));
 
     // Add the X axis
-    svg.append('g').attr('class', 'x axis').attr('transform', `translate(0, ${height})`).call(xAxis);
+    svg
+      .append('g')
+      .attr('class', 'x axis')
+      .attr('transform', `translate(0, ${height})`)
+      .call(xAxis);
 
     // Add the Y axis
-    svg.append('g').attr('class', 'y axis').call(yAxis);
+    svg
+      .append('g')
+      .attr('class', 'y axis')
+      .call(yAxis);
 
     // Set the required objects in chartProps so they can be used to update the chart
     this.chartProps.svg = svg;
@@ -129,5 +151,41 @@ export class MarketChartComponent implements OnChanges {
     this.chartProps.valueLine2 = valueLine2;
     this.chartProps.xAxis = xAxis;
     this.chartProps.yAxis = yAxis;
+  }
+
+  updateChart() {
+    this.formatDate();
+
+    // Scale the range of the data again
+    this.chartProps.x.domain(
+      d3.extent(this.marketStatus, d => {
+        if (d.date instanceof Date) {
+          return d.date.getTime();
+        }
+      })
+    );
+    this.chartProps.y.domain([
+      0,
+      d3.max(this.marketStatus, d => {
+        return Math.max(d.close, d.open);
+      })
+    ]);
+
+    // Select the section we want to apply our changes to
+    this.chartProps.svg.transition();
+
+    // Make the changes to the line chart
+    // Draw updated valueLine
+    this.chartProps.svg
+      .select('.line.line1')
+      .attr('d', this.chartProps.valueLine(this.marketStatus));
+    // Draw updated valueLine2
+    this.chartProps.svg
+      .select('.line.line2')
+      .attr('d', this.chartProps.valueLine2(this.marketStatus));
+    // Draw updated x axis
+    this.chartProps.svg.select('.x.axis').call(this.chartProps.xAxis);
+    // Draw updated y axis
+    this.chartProps.svg.select('.y.axis').call(this.chartProps.yAxis);
   }
 }

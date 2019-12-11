@@ -22,6 +22,13 @@ export class AppComponent {
   constructor(private marketStatusService: MarketStatusService) {
     this.marketStatusService.getInitialMarketStatus().subscribe(prices => {
       this.MarketStatus = prices;
+
+      const marketUpdateObservable = this.marketStatusService.getUpdates();
+      marketUpdateObservable.subscribe((latestStatus: MarketPrice) => {
+        // Create a new MarketStatus array instead of updating the existing value so that the
+        // consuming app-market-chart component is aware data has changed
+        this.MarketStatus = [latestStatus].concat(this.marketStatus);
+      });
     });
   }
 }
