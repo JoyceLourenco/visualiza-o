@@ -16,6 +16,12 @@ $ npm install d3 socket.io-client
 # Install the TypeScript typings
 $ npm i @types/d3 @types/socket.io-client -D
 
+# Generate the service for fetching data
+$ ng generate service market-status
+
+# Generate a component to display the multi-line D3 chart
+$ ng g c market-chart
+
 ```
 
 ## Development server
