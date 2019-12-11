@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { MarketChartComponent } from './market-chart/market-chart.component';
+import { MarketChartComponent } from './components/market-chart/market-chart.component';
 
 @NgModule({
   declarations: [AppComponent, MarketChartComponent],
