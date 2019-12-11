@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
 
+![/screenshots/example-16.gif](/screenshots/example-16.gif)
+
 ## Cheat sheet
 
 Here are some of the commands that were executed while building this front-end application:
