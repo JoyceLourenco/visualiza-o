@@ -30,7 +30,11 @@ export class MarketChartComponent implements OnChanges {
 
   constructor() {}
 
-  ngOnChanges() {}
+  ngOnChanges() {
+    if (this.marketStatus) {
+      this.buildChart();
+    }
+  }
 
   formatDate() {
     this.marketStatus.forEach(ms => {
