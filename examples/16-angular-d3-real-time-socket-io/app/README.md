@@ -2,6 +2,22 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
 
+## Cheat sheet
+
+Here are some of the commands that were executed while building this front-end application:
+
+```sh
+# Assuming the Angular CLI has been installed on your development machine
+$ ng new app
+
+# Install the D3 and Socket.IO libraries
+$ npm install d3 socket.io-client
+
+# Install the TypeScript typings
+$ npm i @types/d3 @types/socket.io-client -D
+
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
