@@ -3,16 +3,15 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { MarketChartComponent } from './market-chart/market-chart.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, MarketChartComponent],
   imports: [
     BrowserModule,
-    HttpClientModule, // Needed to consume REST APIs
+    HttpClientModule // Needed to consume REST APIs
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
