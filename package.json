@@ -18,8 +18,7 @@
     "angular:docker:up": "docker-compose -f docker-compose.angular-d3-real-time-socket-io.yml up",
     "angular:docker:build": "docker-compose -f docker-compose.angular-d3-real-time-socket-io.yml up --remove-orphans --build --force-recreate",
     "angular:docker:down": "docker-compose -f docker-compose.angular-d3-real-time-socket-io.yml down",
-    "docker:nuke": "npm run docker:nuke:containers && docker rmi -f $(docker images -q)",
-    "docker:nuke:containers": "docker rm $(docker ps -aq)"
+    "docker:nuke": "docker system prune -a && docker volume prune"
   },
   "repository": {
     "type": "git",
