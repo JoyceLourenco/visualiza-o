@@ -6,7 +6,7 @@ services:
       context: ./examples/15-angular-d3-responsive-graph
       dockerfile: ./Dockerfile
     container_name: 'angular-d3-responsive-graph'
-    command: bash -c "ng serve --host 0.0.0.0 --port 4200"
+    command: sh -c "ng serve --host 0.0.0.0 --port 4200"
     ports:
       - "4200:4200"
       - "9876:9876"
