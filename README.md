@@ -297,7 +297,7 @@ When you are finished, simply press CTRL+C to spin down the app:
 
 ```sh
 ^CGracefully stopping... (press Ctrl+C again to force)
-Stopping explore-angular-tour-of-heroes ... done
+Stopping using-d3-with-angular ... done
 ```
 
 Finally, you can spin down and remove the Docker container(s) for this app with:
