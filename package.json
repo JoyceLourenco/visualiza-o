@@ -7,17 +7,13 @@
     "npm": ">=6.4.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run angular:start",
-    "build": "npm run angular:build",
-    "stop": "npm run angular:stop",
-    "start:server": "npx live-server --port=8000",
-    "angular:start": "npm run angular:docker:up",
-    "angular:build": "npm run angular:docker:build",
-    "angular:stop": "npm run angular:docker:down",
-    "angular:docker:up": "docker-compose -f docker-compose.angular-d3-real-time-socket-io.yml up",
-    "angular:docker:build": "docker-compose -f docker-compose.angular-d3-real-time-socket-io.yml up --remove-orphans --build --force-recreate",
-    "angular:docker:down": "docker-compose -f docker-compose.angular-d3-real-time-socket-io.yml down",
+    "build": "npm run start:clean",
+    "start": "npm run start:example:14",
+    "start:clean": "npm run start:example:14:clean",
+    "stop": "npm run stop:example:14",
+    "start:example:14": "cd examples/14-using-d3-with-angular && npm start",
+    "start:example:14:clean": "cd examples/14-using-d3-with-angular && npm run build",
+    "stop:example:14": "cd examples/14-using-d3-with-angular && npm run stop",
     "docker:nuke": "docker system prune -a && docker volume prune"
   },
   "repository": {
