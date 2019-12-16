@@ -310,22 +310,34 @@ $ npm run stop:example:14
 
 This example requires you have [Docker Desktop](https://www.docker.com/products/docker-desktop) installed and configured on your development machine - as well as the [Angular CLI](https://cli.angular.io).
 
-To run the Angular example, make sure you're at the top level directory of this project. You will want to modify the following scripts in `package.json` so they refer to the appropriate `docker-compose.angular-d3-responsive-graph.yml` Docker compose file:
+You should be able to start this example with:
 
 ```sh
-# package.json
-"angular:docker:up": "docker-compose -f docker-compose.angular-d3-responsive-graph.yml up",
-"angular:docker:build": "docker-compose -f docker-compose.angular-d3-responsive-graph.yml up --remove-orphans --build --force-recreate",
-"angular:docker:down": "docker-compose -f docker-compose.angular-d3-responsive-graph.yml down",
+$ npm run start:example:15
 ```
 
+If you have made changes to any of the Docker related files or the `package.json` for this example, please use:
+
 ```sh
-$ npm run angular:start
+$ npm run start:example:15:clean
 ```
 
 You should be able to view the app at [http://localhost:4200](http://localhost:4200)
 
 ![screenshots/example-15.gif](screenshots/example-15.gif)
+
+When you are finished, simply press CTRL+C to spin down the app:
+
+```sh
+^CGracefully stopping... (press Ctrl+C again to force)
+Stopping angular-d3-responsive-graph ... done
+```
+
+Finally, you can spin down and remove the Docker container(s) for this app with:
+
+```sh
+$ npm run stop:example:15
+```
 
 ## Example 16: Real-Time Charts using Angular, D3, and Socket.IO
 
