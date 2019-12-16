@@ -13,11 +13,7 @@ RUN npm install -g @angular/cli
 
 # Install dependencies
 COPY package.json ./
-RUN npm install
+RUN npm install --silent
 
 # Copy application code
 COPY . ./
-
-# Expose our application port
-EXPOSE 4200
-EXPOSE 9876
