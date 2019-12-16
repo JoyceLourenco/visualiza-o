@@ -3,11 +3,17 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "start": "docker-compose up",
+    "build": "docker-compose up --remove-orphans --build --force-recreate",
+    "stop": "docker-compose down",
+    "test": "npm run test:ci",
+    "test:local": "ng test",
+    "test:local:coverage": "ng test --no-watch --code-coverage && open ./coverage/app/index.html",
+    "test:ci": "ng test --browsers=ChromeHeadless",
+    "test:ci:coverage": "ng test --browsers=ChromeHeadless --no-watch --code-coverage",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "docker:nuke": "docker system prune -a && docker volume prune"
   },
   "private": true,
   "dependencies": {
