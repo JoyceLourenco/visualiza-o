@@ -9,10 +9,3 @@ RUN npm install --silent
 
 # Copy application code
 COPY . ./
-
-# Expose our application and node debugger ports
-EXPOSE 3000
-EXPOSE 9229
-
-# Start our application
-CMD ["node", "index.js"]
