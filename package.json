@@ -33,6 +33,6 @@
   },
   "homepage": "https://github.com/TheRobBrennan/explore-data-visualization-with-D3#readme",
   "devDependencies": {
-    "tar": "^4.4.8"
+    "tar": "^4.4.18"
   }
 }
